@@ -1,0 +1,3 @@
+nltk
+lemmagen
+Django==2.2
