@@ -14,8 +14,8 @@ def summary(request):
         tts = request.POST.get("tts", "")
         nus = request.POST.get("nus", "5")
         nus = int(nus)
-        if not (10000 >= len(tts) > 0):
-            return HttpResponse('Dolžina besedila mora biti med 1 in 10000 znaki.')
+        if not (100000 >= len(tts) > 0):
+            return HttpResponse('Dolžina besedila mora biti med 1 in 100000 znaki.')
         template = loader.get_template('output.html')
         return HttpResponse(template.render({'tts': summarize(tts, nus)}))
     else:
