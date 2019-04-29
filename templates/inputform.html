@@ -2,8 +2,9 @@
 <div>
     <form method="POST" action="summary">
         {% csrf_token %}
-        Število povedi: <input name="nus" type="number" value=5><br>
+        Število povedi: <input name="nus" type="number" value=5><br><br>
         <textarea name="tts" style="width:50%;height:20%"></textarea><br>
+        <p>Način obnavljanja: <input type="radio" name="method" value="sum" checked> Vsota <input type="radio" name="method" value="average"> Povprečje</p>
         <button type="submit">OK</button>
     </form>
     

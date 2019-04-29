@@ -17,6 +17,6 @@ def summary(request):
         if not (100000 >= len(tts) > 0):
             return HttpResponse('Dolžina besedila mora biti med 1 in 100000 znaki.')
         template = loader.get_template('output.html')
-        return HttpResponse(template.render({'tts': summarize(tts, nus)}))
+        return HttpResponse(template.render({'tts': summarize(tts, nus, method=request.POST.get("method", "sum"))}))
     else:
         return redirect('/')

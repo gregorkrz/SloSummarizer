@@ -5,7 +5,7 @@ from lemmagen.lemmatizer import Lemmatizer
 l = Lemmatizer()
 only_word = lambda s: ''.join([i for i in s if i.isalnum()])
 
-def summarize(text, numSentences):
+def summarize(text, numSentences, method='sum'):
     global l, only_word
     
     a = bytes(text, 'utf-8').decode('utf-8','ignore')
@@ -33,7 +33,8 @@ def summarize(text, numSentences):
             ret += allWords[i]
         return ret
 
-    weights = [dictSum(words[i]) for i in range(len(sentences))]
+    if method == 'sum': weights = [dictSum(words[i]) for i in range(len(sentences))]
+    else: weights = [dictSum(words[i])/len(words[i]) for i in range(len(sentences))] # method == 'average'
 
     w2 = weights.copy()
     w2.sort(reverse=True)
