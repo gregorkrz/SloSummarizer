@@ -1,4 +1,5 @@
 nltk
 cython
 lemmagen==1.2.0
+gunicorn
 Django==2.2
