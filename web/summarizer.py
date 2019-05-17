@@ -1,13 +1,25 @@
 from nltk.tokenize import sent_tokenize
 from nltk import word_tokenize
+import lemmagen
 from lemmagen.lemmatizer import Lemmatizer
 
-l = Lemmatizer()
 only_word = lambda s: ''.join([i for i in s if i.isalnum()])
+language_switcher = {
+        'en': lemmagen.DICTIONARY_ENGLISH,
+        'rs': lemmagen.DICTIONARY_SERBIAN,
+        'it': lemmagen.DICTIONARY_ITALIAN,
+        'fr': lemmagen.DICTIONARY_FRENCH,
+        'de': lemmagen.DICTIONARY_GERMAN,
+        'es': lemmagen.DICTIONARY_SPANISH,
+        'cz': lemmagen.DICTIONARY_CZECH,
+        'bg': lemmagen.DICTIONARY_BULGARIAN,
+        'ee': lemmagen.DICTIONARY_ESTONIAN,
+    }
 
-def summarize(text, numSentences, method='sum'):
-    global l, only_word
-    
+
+def summarize(text, numSentences, method='sum', lang='si'):
+    global only_word, language_switcher
+    l = Lemmatizer(dictionary=language_switcher.get(lang, lemmagen.DICTIONARY_SLOVENE))
     a = bytes(text, 'utf-8').decode('utf-8','ignore')
     sentences = sent_tokenize(a)
     words = []
@@ -16,7 +28,7 @@ def summarize(text, numSentences, method='sum'):
     for s in sentences:
         words.append([])
         for i in word_tokenize(s):
-            temp = only_word(i).upper()
+            temp = only_word(i).lower()
             if len(temp) > 0:
                 temp = l.lemmatize(temp)
                 words[-1].append(temp)

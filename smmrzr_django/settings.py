@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('djangoSK', '12345')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "slosummarizer.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "slosummarizer.herokuapp.com", "127.0.0.1"]
 
 X_FRAME_OPTIONS = 'DENY'
 
