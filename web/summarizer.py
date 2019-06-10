@@ -22,7 +22,7 @@ def summarize(text, numSentences, method='sum', lang='si'):
     l = Lemmatizer(dictionary=language_switcher.get(lang, lemmagen.DICTIONARY_SLOVENE))
     a = bytes(text, 'utf-8').decode('utf-8','ignore')
     sentences = sent_tokenize(a)
-    words = []
+    words = [] # holds arrays of words for each sentence
     allWords = {} # holds frequencies of all words in the text
 
     for s in sentences:
