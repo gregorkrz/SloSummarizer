@@ -46,8 +46,12 @@ def summarize(text, numSentences, method='sum', lang='si'):
         return ret
 
     if method == 'sum': weights = [dictSum(words[i]) for i in range(len(sentences))]
-    else: weights = [dictSum(words[i])/len(words[i]) for i in range(len(sentences))] # method == 'average'
-
+    else: # method == 'average'
+        weights = []
+        for i in range(len(sentences)):
+            if len(words[i]) != 0: weights.append(dictSum(words[i])/len(words[i]))
+            else: weights.append(0)
+            
     w2 = weights.copy()
     w2.sort(reverse=True)
 
